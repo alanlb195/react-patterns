@@ -1,0 +1,61 @@
+body {
+  background-color: #282c34;
+  color: white;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+.main-layout {
+  display: flex;
+  height: 100vh; /* Ocupar toda la altura de la pantalla */
+}
+
+.main-nav {
+  background-color: #20232a;
+  width: 250px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.main-nav ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.main-nav li {
+  margin-bottom: 15px;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.main-nav .active {
+  background-color: #61dafb;
+  color: #20232a;
+}
+
+.content {
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto; /* Para que el contenido tenga scroll si es necesario */
+}
+
+.content > h1 {
+  font-size: 24px;
+}
