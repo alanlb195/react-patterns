@@ -1,0 +1,27 @@
+.bg-dark {
+    background-color: rgb(82, 80, 80);
+}
+
+.text-white {
+    color: white;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.product-image {
+    border-radius: 20px;
+    padding: 10px;
+    width: calc(100% - 20px);
+}
+
+.custom-buttons button {
+    color: white;
+    border-color: white;
+}
+
+.custom-buttons div {
+    color: white;
+    border-color: white;
+}
