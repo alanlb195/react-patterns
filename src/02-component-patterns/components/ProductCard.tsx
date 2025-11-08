@@ -1,7 +1,7 @@
-import { createContext, type ReactElement } from 'react';
+import { createContext, type JSX } from 'react';
 
 import { useProduct } from '../hooks/useProduct';
-import type { Product, ProductContextProps, onChangeArgs } from '../interfaces/interfaces';
+import type { InitialValues, Product, ProductCardhandlers, ProductContextProps, onChangeArgs } from '../interfaces/interfaces';
 
 import styles from '../styles/styles.module.css';
 
@@ -10,33 +10,44 @@ const { Provider } = ProductContext;
 
 export interface Props {
     product: Product;
-    children?: ReactElement | ReactElement[];
+    // children?: ReactElement | ReactElement[];
+    children: (args: ProductCardhandlers) => JSX.Element;
     className?: string;
     style?: React.CSSProperties | undefined;
     onChange?: (args: onChangeArgs) => void;
     value?: number;
+    initialValues?: InitialValues
 }
 
-export const ProductCard = ({ product, children, className, style, onChange, value }: Props) => {
+export const ProductCard = ({ product, children, className, style, onChange, value, initialValues }: Props) => {
     // console.log(styles);
-    const { counter, handleAdd } = useProduct({
+    const { counter, increseBy, maxCount, isMaxCountReached, reset,  } = useProduct({
         onChange,
         product,
-        value
+        value,
+        initialValues,
     });
 
     return (
         <Provider value={{
             counter,
-            handleAdd,
-            product
+            increseBy,
+            product,
+            maxCount
         }}>
             <div
                 style={style}
                 className={`${styles.productCard} ${className}`}
             >
 
-                {children}
+                {children({
+                    count: counter,
+                    isMaxCountReached,
+                    maxCount: initialValues?.maxCount,
+                    product,
+                    reset,
+                    increseBy
+                })}
                 {/* <ProductImage img={product.img} /> */}
                 {/* <img className={styles.productImg} src={product.img ? product.img : noImage} alt="Coffee Mug" /> */}
 
